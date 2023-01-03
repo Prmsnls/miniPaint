@@ -1,455 +1,104 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta http-equiv="x-ua-compatible" content="IE=edge" />
-    <title>miniPaint - image editor</title>
-    <meta
-      name="description"
-      content="miniPaint is free online image editor using HTML5. Edit, adjust your images, add effects online in your browser, without installing anything..."
-    />
-    <meta
-      name="keywords"
-      content="photo, image, picture, transparent, layers, free, edit, html5, canvas, javascript, online, photoshop, gimp, effects, sharpen, blur, magic eraser tool, clone tool, rotate, resize, photoshop online, online tools, tilt shift, sprites, keypoints"
-    />
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0" /> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" sizes="192x192" href="images/favicon.png" />
-    <!-- <link rel="manifest" href="dist/manifest.json"> -->
-    <!-- Google -->
-    <meta itemprop="name" content="miniPaint" />
-    <meta
-      itemprop="description"
-      content="miniPaint is free online image editor using HTML5. Edit, adjust your images, add effects online in your browser, without installing anything..."
-    />
-    <meta
-      itemprop="image"
-      content="https://viliusle.github.io/miniPaint/images/preview.jpg"
-    />
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="miniPaint" />
-    <meta
-      name="twitter:description"
-      content="miniPaint is free online image editor using HTML5. Edit, adjust your images, add effects online in your browser, without installing anything..."
-    />
-    <meta
-      name="twitter:image"
-      content="https://viliusle.github.io/miniPaint/images/preview.jpg"
-    />
-    <meta
-      name="twitter:image:alt"
-      content="miniPaint is free online image editor using HTML5. Edit, adjust your images, add effects online in your browser, without installing anything..."
-    />
-    <!-- Facebook, Pinterest -->
-    <meta property="og:title" content="miniPaint" />
-    <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://viliusle.github.io/miniPaint/" />
-    <meta
-      property="og:image"
-      content="https://viliusle.github.io/miniPaint/images/preview.jpg"
-    />
-    <meta
-      property="og:description"
-      content="miniPaint is free online image editor using HTML5. Edit, adjust your images, add effects online in your browser, without installing anything..."
-    />
-    <meta property="og:site_name" content="miniPaint" />
-    <link href="/dist/output.css" rel="stylesheet" />
-    <!-- <script src="dist/bundle.js"></script> -->
-    <script src="https://unpkg.com/feather-icons"></script>
-  </head>
-  <body>
-    <!-- <nav aria-label="Main Menu" class="tw-main_menu" id="main_menu"></nav>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="x-ua-compatible" content="IE=edge" />
+	<title>miniPaint - image editor</title>
+	<meta name="description" content="miniPaint is free online image editor using HTML5. Edit, adjust your images, add effects online in your browser, without installing anything..." />
+	<meta name="keywords" content="photo, image, picture, transparent, layers, free, edit, html5, canvas, javascript, online, photoshop, gimp, effects, sharpen, blur, magic eraser tool, clone tool, rotate, resize, photoshop online, online tools, tilt shift, sprites, keypoints" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0" />
+	<link rel="icon" sizes="192x192" href="images/favicon.png">
+	<!-- <link rel="manifest" href="dist/manifest.json"> -->
+	<!-- Google -->
+	<meta itemprop="name" content="miniPaint" />
+	<meta itemprop="description" content="miniPaint is free online image editor using HTML5. Edit, adjust your images, add effects online in your browser, without installing anything..." />
+	<meta itemprop="image" content="https://viliusle.github.io/miniPaint/images/preview.jpg" />
+	<!-- Twitter -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="miniPaint" />
+	<meta name="twitter:description" content="miniPaint is free online image editor using HTML5. Edit, adjust your images, add effects online in your browser, without installing anything..." />
+	<meta name="twitter:image" content="https://viliusle.github.io/miniPaint/images/preview.jpg" />
+	<meta name="twitter:image:alt" content="miniPaint is free online image editor using HTML5. Edit, adjust your images, add effects online in your browser, without installing anything..." />
+	<!-- Facebook, Pinterest -->
+	<meta property="og:title" content="miniPaint" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="https://viliusle.github.io/miniPaint/" />
+	<meta property="og:image" content="https://viliusle.github.io/miniPaint/images/preview.jpg" />
+	<meta property="og:description" content="miniPaint is free online image editor using HTML5. Edit, adjust your images, add effects online in your browser, without installing anything..." />
+	<meta property="og:site_name" content="miniPaint" />
 	
-	<div class="tw-submenu">
-		<a class="tw-logo" href="#">miniPaint</a>
-		<div class="tw-block attributes" id="action_attributes"></div>
-		<button class="tw-undo_button" id="undo_button" type="button">
-			<span class="tw-sr_only">Undo</span>
-		</button>
-	</div>
-	
-	<div class="tw-sidebar_left" id="tools_container"></div>
+	<script src="dist/bundle.js"></script>
+</head>
+<body>
+	<div class="wrapper">
+
+		<nav aria-label="Main Menu" class="main_menu" id="main_menu"></nav>
+		
+		<div class="submenu">
+			<a class="logo" href="#">miniPaint</a>
+			<div class="block attributes" id="action_attributes"></div>
+			<button class="undo_button" id="undo_button" type="button">
+				<span class="sr_only">Undo</span>
+			</button>
+		</div>
+		
+		<div class="sidebar_left" id="tools_container"></div>
 
 
-	<div class="tw-middle_area" id="middle_area">
+		<div class="middle_area" id="middle_area">
 
-		<canvas class="tw-ruler_left" id="ruler_left"></canvas>
-		<canvas class="tw-ruler_top" id="ruler_top"></canvas>
+			<canvas class="ruler_left" id="ruler_left"></canvas>
+			<canvas class="ruler_top" id="ruler_top"></canvas>
 
-		<div class="tw-main_wrapper" id="main_wrapper">
-			<div class="tw-canvas_wrapper" id="canvas_wrapper">
-				<div id="mouse"></div>
-				<div class="tw-transparent-grid" id="canvas_minipaint_background"></div>
-				<canvas id="canvas_minipaint">
-					<div class="tw-trn error">
-						Your browser does not support canvas or JavaScript is not enabled.
-					</div>
-				</canvas>
+			<div class="main_wrapper" id="main_wrapper">
+				<div class="canvas_wrapper" id="canvas_wrapper">
+					<div id="mouse"></div>
+					<div class="transparent-grid" id="canvas_minipaint_background"></div>
+					<canvas id="canvas_minipaint">
+						<div class="trn error">
+							Your browser does not support canvas or JavaScript is not enabled.
+						</div>
+					</canvas>
+				</div>
+			</div>
+		</div>
+
+		<div class="sidebar_right">
+			<div class="preview block">
+				<h2 class="trn toggle" data-target="toggle_preview">Preview</h2>
+				<div id="toggle_preview"></div>
+			</div>
+			
+			<div class="colors block">
+				<h2 class="trn toggle" data-target="toggle_colors">Colors</h2>
+				<div class="content" id="toggle_colors"></div>
+			</div>
+			
+			<div class="block" id="info_base">
+				<h2 class="trn toggle toggle-full" data-target="toggle_info">Information</h2>
+				<div class="content" id="toggle_info"></div>
+			</div>
+			
+			<div class="details block" id="details_base">
+				<h2 class="trn toggle toggle-full" data-target="toggle_details">Layer details</h2>
+				<div class="content" id="toggle_details"></div>
+			</div>
+			
+			<div class="layers block">
+				<h2 class="trn">Layers</h2>
+				<div class="content" id="layers_base"></div>
 			</div>
 		</div>
 	</div>
-
-	<div class="tw-sidebar_right">
-		<div class="tw-preview tw-block">
-			<h2 class="tw-trn toggle" data-target="toggle_preview">Preview</h2>
-			<div id="toggle_preview"></div>
-		</div>
-		
-		<div class="tw-colors tw-block">
-			<h2 class="tw-trn toggle" data-target="toggle_colors">Colors</h2>
-			<div class="tw-content" id="toggle_colors"></div>
-		</div>
-		
-		<div class="tw-block" id="info_base">
-			<h2 class="tw-trn toggle toggle-full" data-target="toggle_info">Information</h2>
-			<div class="tw-content" id="toggle_info"></div>
-		</div>
-		
-		<div class="tw-details tw-block" id="details_base">
-			<h2 class="tw-trn toggle toggle-full" data-target="toggle_details">Layer details</h2>
-			<div class="tw-content" id="toggle_details"></div>
-		</div>
-		
-		<div class="tw-layers tw-block">
-			<h2 class="tw-trn">Layers</h2>
-			<div class="tw-content" id="layers_base"></div>
-		</div>
-	</div> -->
-    <main class="md:tw-h-screen tw-min-h-[748px] tw-bg-bg-dark-200">
-      <div class="tw-bg-bg-dark-300 tw-px-8">
-        <div
-          class="tw-flex tw-justify-between tw-items-center tw-py-4 tw-bg-bg-dark-300"
-        >
-          <a href="/">
-            <div class="tw-flex">
-              <div class="tw-w-8 tw-h-8 tw-relative tw-my-0 tw-mr-2">
-                <image
-                  src="./images/start-topbar-logo.png"
-                  alt="logo"
-                  class="res-image"
-                ></image>
-              </div>
-
-              <span
-                class="tw-text-white tw-mx-2 tw-text-md md:tw-ext-xl tw-font-semibold"
-              >
-                design my album art
-              </span>
-            </div>
-          </a>
-          <div>
-            <a
-              class="tw-text-white tw-hidden md:tw-visible tw-font-semibold"
-              href="#"
-            >
-              design more+
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="tw-flex md:tw-flex-row tw-flex-col md:tw-h-[700px] tw-w-full">
-        <!-- Navbar -->
-        <!-- <div
-        class="tw-min-w-[250px] min-h-[250px] tw-w-full tw-h-full lg:w-[425px] lg:h-[425px] tw-relative tw-my-0 tw-mr-2"
-      >
-	</div> -->
-        <!-- onSubmit={(e) => e.preventDefault()} -->
-
-        <div class="tw-flex md:tw-flex-row tw-flex-col md:tw-h-full tw-w-full">
-          <form class="md:tw-w-[40%] tw-w-full tw-pr-4 tw-h-full">
-            <div class="tw-px-8 tw-py-4 tw-my-1">
-              <ul class="tw-my-4 tw-flex tw-flex-wrap">
-                <li class="tw-m-1 tw-w-max[200px] tw-flex-grow">
-                  <div
-                    class="tw-col-span-6 sm:tw-col-span-3 tw-shadow-sm tw-bg-faded-white-100"
-                  >
-                    <label
-                      for="country"
-                      class="tw-block tw-text-xs tw-font-medium tw-text-white tw-p-2 tw-bg-transparent"
-                    >
-                      Country
-
-                    </label>
-                    <select
-                      id="country"
-                      name="country"
-                      autocomplete="country-name"
-                      class="tw-mt-1 tw-select tw-select-ghost tw-block tw-w-full tw-font-bold tw-text-white tw-border-none tw-p-2 tw-shadow-sm focus:border-indigo-500 focus:tw-outline-none focus:ring-indigo-500 tw-text-md"
-                    >
-                      <option>United States</option>
-                      <option>Canada</option>
-                      <option>Mexico</option>
-                    </select>
-                  </div>
-                </li>
-                <li class="tw-m-1 w-max[200px] tw-flex-grow">
-                  <div
-                    class="tw-col-span-6 sm:tw-col-span-3 tw-shadow-sm tw-bg-faded-white-100"
-                  >
-                    <label
-                      for="country"
-                      class="tw-block tw-text-xs tw-font-medium tw-text-white tw-p-2 tw-bg-transparent"
-                    >
-                      Country
-                    </label>
-                    <select
-                      id="country"
-                      name="country"
-                      autocomplete="country-name"
-                      class="tw-mt-1 tw-select tw-select-ghost tw-block tw-w-full tw-font-bold tw-text-white tw-border-none tw-p-2 tw-shadow-sm focus:border-indigo-500 focus:tw-outline-none focus:ring-indigo-500 tw-text-md"
-                    >
-                      <option>United States</option>
-                      <option>Canada</option>
-                      <option>Mexico</option>
-                    </select>
-                  </div>
-                </li>
-                <li class="tw-m-1 w-max[200px] tw-flex-grow">
-                  <div
-                    class="tw-col-span-6 sm:tw-col-span-3 tw-shadow-sm tw-bg-faded-white-100"
-                  >
-                    <label
-                      for="country"
-                      class="tw-block tw-text-xs tw-font-medium tw-text-white tw-p-2 tw-bg-transparent"
-                    >
-                      Country
-                    </label>
-                    <select
-                      id="country"
-                      name="country"
-                      autocomplete="country-name"
-                      class="tw-mt-1 tw-select tw-select-ghost tw-block tw-w-full tw-font-bold tw-text-white tw-border-none tw-p-2 tw-shadow-sm focus:border-indigo-500 focus:tw-outline-none focus:ring-indigo-500 tw-text-md"
-                    >
-                      <option>United States</option>
-                      <option>Canada</option>
-                      <option>Mexico</option>
-                    </select>
-                  </div>
-                </li>
-              </ul>
-              <div class="tw-my-4">
-                <p class="tw-text-white tw-text-xs tw-py-2">add element</p>
-                <div class="tw-flex">
-                  <ul class="tw-flex">
-                    <li
-                      class="tw-w-16 tw-h-16 lg:tw-w-20 lg:tw-h-20 tw-bg-faded-white-100 tw-text-sm tw-relative tw-flex tw-justify-center tw-items-end tw-p-2 tw-m-1"
-                    >
-                      <span
-                        class="tw-text-white tw-text-md xl:tw-text-lg tw-font-bold"
-                      >
-                        Skull
-                      </span>
-                      <i
-                        data-feather="x"
-                        class="tw-absolute tw-top-[2px] tw-right-[2px] tw-text-xs"
-                      ></i>
-                    </li>
-                  </ul>
-                  <button
-                    class="tw-w-16 tw-h-16 lg:tw-w-20 lg:tw-h-20 tw-text-white tw-m-1 tw-bg-faded-white-100 tw-inline-flex tw-justify-center tw-items-center"
-                  >
-                    +
-                  </button>
-                </div>
-              </div>
-              <div class="tw-my-4">
-                <p class="tw-text-white tw-text-xs tw-py-2">select color</p>
-                <div class="tw-flex">
-                  <ul class="tw-flex tw-flex-wrap">
-                    <li
-                      class="tw-w-24 tw-h-9 lg:tw-h-11 lg:tw-w-28 tw-bg-faded-white-100 tw-p-1 tw-m-1 tw-relative tw-flex tw-justify-around tw-items-center"
-                    >
-                      <div
-                        class="tw-bg-rose-600 tw-w-5 tw-h-5 lg:tw-h-6 lg:tw-w-6"
-                      ></div>
-                      <span class="tw-px-2 tw-text-xs">Rose</span>
-                      <i class="tw-text-xs" data-feather="x"></i>
-                    </li>
-                    <li
-                      class="tw-w-24 tw-h-9 lg:tw-h-11 lg:tw-w-28 tw-bg-faded-white-100 tw-p-1 tw-m-1 tw-relative tw-flex tw-justify-around tw-items-center"
-                    >
-                      <div
-                        class="tw-bg-emerald-600 tw-w-5 tw-h-5 lg:tw-h-6 lg:tw-w-6"
-                      ></div>
-                      <span class="tw-px-2 tw-text-xs">Emerald</span>
-                      <i class="tw-text-xs" data-feather="x"></i>
-                    </li>
-                  </ul>
-                  <button
-                    class="tw-w-9 tw-h-9 lg:tw-h-11 tw-m-1 tw-bg-faded-white-100 tw-inline-flex tw-justify-center tw-items-center"
-                  >
-                    +
-                  </button>
-                </div>
-              </div>
-              <div class="tw-my-4">
-                <p class="tw-text-white tw-text-xs tw-py-2">
-                  select canvas shape
-                </p>
-                <div>
-                  <ul class="tw-flex">
-                    <li class="tw-p-1 tw-my-1">
-                      <input
-                        type="radio"
-                        id="canvas-shape-square"
-                        name="canvas-shape"
-                        value="square"
-                        class="tw-hidden tw-peer"
-                      />
-                      <label
-                        for="canvas-shape-square"
-                        class="tw-peer tw-flex tw-16 tw-h-16 lg:tw-w-20 lg:tw-h-20 tw-justify-center tw-items-center tw-p-5 tw-border tw-border-transparent tw-cursor-pointer tw-bg-faded-white-100 peer-checked:tw-border-light-green peer-hover:tw-border-light-green"
-                      >
-                        <div
-                          class="tw-p-[2px] tw-w-12 tw-h-16 tw-flex tw-flex-col tw-justify-center tw-items-center"
-                        >
-                          <div class="tw-w-6 tw-h-6 tw-bg-faded-white-100"></div>
-                          <span class="tw-text-xs">square</span>
-                        </div>
-                      </label>
-                    </li>
-                    <li class="tw-p-1 tw-my-1">
-                      <input
-                        type="radio"
-                        id="canvas-shape-landscape"
-                        name="canvas-shape"
-                        value="landscape"
-                        class="tw-hidden tw-peer"
-                      />
-                      <label
-                        for="canvas-shape-landscape"
-                        class="tw-peer tw-flex tw-16 tw-h-16 lg:tw-w-20 lg:tw-h-20 tw-justify-center tw-items-center tw-p-5 tw-border tw-border-transparent tw-cursor-pointer tw-bg-faded-white-100 peer-checked:tw-border-light-green peer-hover:tw-border-light-green"
-                      >
-                        <div
-                          class="tw-p-[2px] tw-w-12 tw-h-16 tw-flex tw-flex-col tw-justify-center tw-items-center"
-                        >
-                          <div class="tw-w-8 tw-h-6 tw-bg-faded-white-100"></div>
-                          <span class="tw-text-xs">landscape</span>
-                        </div>
-                      </label>
-                    </li>
-                    <li class="tw-p-1 tw-my-1">
-                      <input
-                        type="radio"
-                        id="canvas-shape-portrait"
-                        name="canvas-shape"
-                        value="portrait"
-                        class="tw-hidden tw-peer"
-                      />
-                      <label
-                        for="canvas-shape-portrait"
-                        class="tw-peer tw-flex tw-16 tw-h-16 lg:tw-w-20 lg:tw-h-20 tw-justify-center tw-items-center tw-p-5 tw-border tw-border-transparent tw-cursor-pointer tw-bg-faded-white-100 peer-checked:tw-border-light-green peer-hover:tw-border-light-green"
-                      >
-                        <div
-                          class="tw-p-[2px] tw-w-12 tw-h-16 tw-flex tw-flex-col tw-justify-center tw-items-center"
-                        >
-                          <div
-                            class="tw-w-6 tw-h-8 tw-bg-faded-white-100  "
-                          ></div>
-                          <span
-                            class="tw-text-xs "
-                          >
-                            portrait
-                          </span>
-                        </div>
-                      </label>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="tw-my-6">
-                <div class="tw-form-control w-52">
-                  <label class="tw-cursor-pointer tw-label">
-                    <span class="tw-label-text">Blank Background</span>
-                    <input
-                      type="checkbox"
-                      class="tw-toggle tw-toggle-primary"
-                    />
-                  </label>
-                </div>
-              </div>
-
-              <div class="tw-flex">
-                <span
-                  class="tw-text-4xl tw-w-16 tw-h-16 tw-justify-center tw-items-center tw-inline-flex tw-mx-1 tw-bg-faded-white-100"
-                >
-                  🎲
-                </span>
-                <button class="tw-btn btn-start">design it</button>
-              </div>
-            </div>
-          </form>
-          <div
-            class="tw-bg-bg-dark-300 tw-min-h-[24rem] tw-flex-grow md:tw-w-[60%] tw-w-full tw-flex tw-relative tw-justify-center tw-items-center"
-          >
-            <div
-              class="tw-flex tw-flex-col tw-justify-center tw-items-center tw-p-4 tw-my-6 tw-w-full tw-h-full"
-            >
-              <!-- <div
-                class="tw-absolute tw-flex tw-flex-col tw-right-0 tw-top-5 tw-h-min tw-z-10 tw-bg-bg-dark-300"
-              >
-                <button
-                  class="tw-btn btn-save tw-w-14 tw-m-0 tw-h-14 md:tw-w-16 md:tw-h-16"
-                >
-                  <img src="./images/icons/refresh.svg" alt="refresh logo" />
-                </button>
-                <button
-                  class="tw-btn btn-save tw-w-14 tw-m-0 tw-h-14 md:tw-w-16 md:tw-h-16"
-                >
-                  <img src="./images/icons/download.svg" alt="download logo" />
-                </button>
-              </div> -->
-              <!-- <div
-                class="tw-min-w-[250px] tw-min-h-[250px] tw-w-full tw-h-full lg:tw-w-[425px] lg:tw-h-[425px] tw-relative tw-my-0 tw-mr-2"
-              > -->
-                <!-- <Image
-                    src={sampleDesign}
-                    alt="logo"
-                    fill
-                    class="tw-object-contain"
-                  ></Image> -->
-
-                <iframe
-                  id="myFrame"
-                  style="width: 100%; height: 100vh; border: 0"
-                  src="../"
-                  allow="camera"
-                ></iframe>
-              </div>
-              <!-- <button
-                class="tw-btn btn-save tw-bg-faded-white-100 tw-text-white"
-              >
-                <i data-feather="bookmark" class="tw-mx-1 tw-text-white"></i>
-                <span class="tw-capitalize"> Save</span>
-              </button> -->
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- <div class="tw-mobile_menu">
-        <button
-          class="tw-left_mobile_menu"
-          id="left_mobile_menu_button"
-          type="button"
-        >
-          <span class="tw-sr_only">Toggle Menu</span>
-        </button>
-        <button
-          class="tw-right_mobile_menu"
-          id="mobile_menu_button"
-          type="button"
-        >
-          <span class="tw-sr_only">Toggle Menu</span>
-        </button>
-      </div>
-      <div class="tw-hidden" id="tmp"></div>
-      <div id="popups"></div> -->
-    </main>
-
-    <script>
-      feather.replace();
-    </script>
-  </body>
+	<div class="mobile_menu">
+		<button class="left_mobile_menu" id="left_mobile_menu_button" type="button">
+			<span class="sr_only">Toggle Menu</span>
+		</button>
+		<button class="right_mobile_menu" id="mobile_menu_button" type="button">
+			<span class="sr_only">Toggle Menu</span>
+		</button>
+	</div>
+	<div class="hidden" id="tmp"></div>
+	<div id="popups"></div>
+</body>
 </html>
