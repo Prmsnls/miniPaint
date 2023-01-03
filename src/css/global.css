@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.res-image {
+  max-inline-size: 100%;
+  block-size: auto;
+  aspect-ratio: 2/1;
+  object-fit: cover;
+}
+
+.react-select__single-value {
+  @apply tw-lowercase xl:tw-text-lg tw-font-bold tw-text-base;
+}
+
+@layer components {
+  .btn-start {
+    display: inline-flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    height: 4rem;
+    border-radius: 0;
+    background: linear-gradient(
+      263.87deg,
+      #3749e6 -10.19%,
+      #9938a2 42.01%,
+      #ff5757 110.98%
+    );
+  }
+  .btn-save {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 2rem;
+    width: 8rem;
+    border-radius: 0;
+    background: transparent;
+    margin: 1rem auto;
+  }
+}
